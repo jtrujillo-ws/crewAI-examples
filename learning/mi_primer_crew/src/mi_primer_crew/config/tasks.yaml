@@ -1,0 +1,29 @@
+# Definicion de las tareas del crew.
+# Cada tarea indica:
+#   description     -> instrucciones para el agente
+#   expected_output -> como debe lucir el resultado (ayuda a guiar al LLM)
+#   agent           -> que agente (de agents.yaml) la ejecuta
+# En un proceso secuencial, las tareas se ejecutan en orden y la salida de una
+# queda disponible como contexto para la siguiente.
+
+tarea_investigacion:
+  description: >
+    Investiga a fondo el tema: {topic}.
+    Identifica los conceptos clave, los datos mas relevantes y cualquier
+    informacion actual e interesante. No inventes datos: si no estas seguro,
+    indicalo.
+  expected_output: >
+    Una lista de 8 a 10 puntos (bullets) con la informacion mas relevante
+    sobre {topic}, redactada en espaniol.
+  agent: investigador
+
+tarea_redaccion:
+  description: >
+    A partir de los hallazgos de la investigacion, redacta un resumen claro y
+    didactico sobre {topic} para un lector no experto. Organiza el contenido
+    con una breve introduccion, secciones con subtitulos y una conclusion.
+  expected_output: >
+    Un informe en formato markdown, escrito en espaniol, con titulo,
+    introduccion, secciones con subtitulos y conclusion. Sin usar bloques de
+    codigo con '```'.
+  agent: redactor
